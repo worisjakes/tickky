@@ -1,0 +1,31 @@
+doctype html
+html
+    head(lang = "en")
+        title Tic Tac Toe
+        link(rel = "stylesheet", href="/main.css")
+        link(rel = "stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css")
+        link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
+        meta(charset = "utf-8")
+        meta(name ="viewport", content = "width= device-width, initial-scale = 1.0")
+    body
+        div.row.pink
+            div.col.s8.m2
+                div#wrapper
+                    heading
+                        h1.wrapper
+                            span#tic Tic 
+                            span#tac.tc Tac 
+                            span#toe.tc Toe
+                        
+            div.col.m10
+                nav.pink
+                    div.nav-wrapper
+                        div
+                            if currentUser
+                                a.breadcrumb(href = "#!") Log Out
+                            else
+                                a.breadcrumb(href = "#!") Log in
+                            a.breadcrumb(href = "#!") Developers
+                            a.breadcrumb(href = "#!") How to play
+    block content
+        

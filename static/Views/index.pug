@@ -1,0 +1,50 @@
+extends ./layout.pug
+block content                            
+        section.boaard
+            a#demo.btn.waves-effect.btn-large.pink Start demo
+            div.board
+                div.crow
+                    div.cell#div0
+                    div.cell.div1
+                    div.cell.div2
+                div.crow
+                    div.cell.div3
+                    div.cell.div4
+                    div.cell.div5
+                div.crow
+                    div.cell.div6
+                    div.cell.div7
+                    div.cell.div8
+        section
+            article
+                p
+                    h1.p How to play
+                ol
+                    li
+                        h5 The game is played on a grid that's 3 squares by 3 squares.
+                    li
+                        h5  You are either X or O. Players take turns putting their marks in empty squares
+                    li
+                        h5 The first player to get 3 of her marks in a row(up, down, across or diagonally) is the winner
+                    li
+                        h5 When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie
+                                
+
+        
+        a.waves-effect.waves-light.btn.pulse.pink#bttn.col.m4(onclick ="Show();") play 
+            i.material-icons.left play_circle_filled
+        form#form(method = "post", action ="/login")
+            label(for="User") Username:
+            input#user(type ="text", placeholder ="Enter Username", name= "user")
+            label(for ="email") Email:
+            input#email(type ="email", placeholder="Please Enter password", name ="email" )
+            label(for ="password") Password:
+            input#pass(type="password", placeholder="Enter password", name="password")
+            button.btn.waves-effect.waves.light(type ="submit", name ="action") submit
+                i.material-icons.right Send
+        hr
+        
+        script(src ="/sript.js")
+        
+
+        

@@ -1,0 +1,59 @@
+extends ./layout.pug
+block content
+    section.boaard
+            .row
+                .col.m4
+                    ul.collection.with-header
+                        li.collection-header
+                            h4 Profile
+                            img.responsive-img(src= "https://scontent.flos6-1.fna.fbcdn.net/v/t1.0-9/19029646_1485569508160932_7785511066077146586_n.jpg?_nc_eui2=v1%3AAeHX1z-Jnz3Foug2I2sraFzmXntgshPUXuSIu6MfEhWrxAk6JMAgeEwKPSDnJMSLj2wuevYfvw2DohbhuPBpcm1ywuyzq92tiektt41L7hAJ1w&oh=b92ec725ef4d1772eeea8b10fbf794f4&oe=5AA18CE6" alt="Contact Person")
+                            a.waves-effect.waves-light.btn.pink(href= "/changedp") Change Profile picture
+                        li.collection-item Name: #{name}
+                        li.collection-item Games Won: #{won}
+                        li.collection-item Games lost: #{lost}
+                        li.collection-item Level:#{level}
+                .col.m4
+                    .vs
+                        h1.red-text VS
+                .col.m4
+                    h2 Click play to play with an online user or with ticky the computer
+            
+          
+        
+      
+            a#play.btn.waves-effect.btn-large.pink(onclick ='alarm()') Play
+            .card.blue-grey.darken-1
+                #div1.card-content.white-text
+                    span.card-title Online Users
+                    
+                    
+            div.newboard
+                div.crow
+                    div.cell#div0
+                    div.cell.div1
+                    div.cell.div2
+                div.crow
+                    div.cell.div3
+                    div.cell.div4
+                    div.cell.div5
+                div.crow
+                    div.cell.div6
+                    div.cell.div7
+                    div.cell.div8
+    footer.page-footer
+            h5 Contribute to this project on git hub
+            a(href = "#") Git hub
+            .footer-copyright
+                .container    &copy; Woris jakes
+    script(src ="/sript.js")
+    script(src ="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js")
+    script.
+        var socket = io();
+        socket.on('chat', function(msg){
+            var elem = document.getElementById('div1');
+            var div = document.createElement("div");
+            div.classList.add('chip');
+            var node = document.createTextNode(msg);
+            div.appendChild(node);
+            elem.appendChild(div);
+        });

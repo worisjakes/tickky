@@ -1,0 +1,118 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+#tac,#tic,#toe{
+    display:block;
+}
+.wrapper{
+margin: auto;
+width:50px;
+padding: 0px;
+font-size: 20px;
+
+}
+#tic{
+    text-align: center;
+    animation-name: up;
+    animation-duration: 4s;
+}
+@keyframes up{
+    0% {transform: translateY(20px); opacity: 0}
+    100% { transform:translateY(0); opacity: 1}
+}
+.tc{
+    visibility: hidden;
+}
+.tac{
+    text-align: center;
+    animation-name: side;
+    animation-duration: 4s;
+    visibility:visible;
+}
+@keyframes side{
+    0% {transform: translateX(20px); opacity: 0}
+    100% { transform:translateX(0); opacity: 1}
+}
+.toe{
+    text-align: center;
+    animation-name: lside;
+    animation-duration: 4s;
+    visibility: visible;
+}
+@keyframes lside{
+    0% {transform: translateX(0); opacity: 0}
+    100% { transform:translateX(3px); opacity: 1}
+}
+section.boaard{
+background-image: url("http://canadel.com/media/wysiwyg/Color/Wood/01-HONEY-WASHED.jpg");
+}
+h1.play{
+    clear: both;
+}
+.board {
+        margin: auto;
+        width: 315px;
+        height: 315px;
+        background-color: #f00;
+        border-radius: 10px;
+        padding-top: 5px;
+        margin-top: 20px;
+    }
+    hr{
+        margin-top: 20px;
+    }
+
+    .cell {
+        width: 95px;
+        height: 95px;
+        margin: 5px;
+        border-radius: 10px;
+        line-height: 90px; 
+        text-align: center;
+        font-size: 30px;
+        float: left;
+        background-color: #FFF;
+    }
+    body {
+        font-family: 'Calibri';
+        width: 100%;
+        text-align: center;
+    }
+    a#bttn{
+        border: 1px solid black;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+    #form{
+        display: none;
+        animation-name: up;
+        animation-duration: 4s;
+    }
+    div.cell span{
+        animation-name: fadein;
+        animation-duration: 6s;
+    }
+    @keyframes fadein{
+        0%{ opacity: 0}
+        100%{opacity:1}
+    }
+    a#demo{
+        margin-top:20px;
+    }
+    footer{
+        margin-top: 30px;
+    }
+    #play{
+        margin-top: 15px;
+    }
+    .newboard {
+        margin: auto;
+        width: 315px;
+        height: 315px;
+        background-color: #f00;
+        border-radius: 10px;
+        padding-top: 5px;
+        margin-top: 20px;
+        display: none;
+    }
