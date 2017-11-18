@@ -97,12 +97,13 @@ io.on('connection', function(socket){
     socket.id = name;
     arr.unshift(name);
     for(var i = 0; i<arr.length; i++){
-    if(arr[1] == ""){
+    if(arr.length == 1){
         socket.emit('chat', "No one is online");
         break;
     }
     else{
-    socket.emit('chat', arr[i]);
+    io.emit('chat', arr);
+    break;
 }
     }
 
