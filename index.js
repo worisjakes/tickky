@@ -93,6 +93,8 @@ app.get('/home', function(req, res){
     
 });
 });
+rooms = [];
+var droom = 0;
 io.on('connection', function(socket){
     socket.id = name;
     arr.unshift(name);
@@ -106,6 +108,24 @@ io.on('connection', function(socket){
     break;
 }
     }
+    socket.on('room', function(id){
+        rooms.unshift(id);
+        if(rooms.indexOf(id)/2 == 0 && rooms.length==1){
+            io.to(id).emit('connectToRoom','No one is online');
+        }
+        else if(rooms.indexOf(id)/2 == 0 && rooms.length>1){
+             io.to(rooms[rooms.indexOf(id)+1]).emit('connectToRoom','hi');
+        }
+        else if(rooms.indexOf(id)/2 != 0 && rooms.length>1){
+            io.to(rooms[rooms.indexOf(id)+1]).emit('connectToRoom','hi');
+        }
+
+    })
+    
+    
+    
+    
+   
 
     //Get the name of disconnected users and pop it out of arr
 socket.on('disconnect', function(){

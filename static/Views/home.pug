@@ -8,13 +8,26 @@ block content
                             h4 Profile
                             img.responsive-img(src= "https://scontent.flos6-1.fna.fbcdn.net/v/t1.0-9/19029646_1485569508160932_7785511066077146586_n.jpg?_nc_eui2=v1%3AAeHX1z-Jnz3Foug2I2sraFzmXntgshPUXuSIu6MfEhWrxAk6JMAgeEwKPSDnJMSLj2wuevYfvw2DohbhuPBpcm1ywuyzq92tiektt41L7hAJ1w&oh=b92ec725ef4d1772eeea8b10fbf794f4&oe=5AA18CE6" alt="Contact Person")
                             a.waves-effect.waves-light.btn.pink(href= "/changedp") Change Profile picture
-                        li.collection-item Name: #{name}
+                        li#name.collection-item Name: #{name}
                         li.collection-item Games Won: #{won}
                         li.collection-item Games lost: #{lost}
                         li.collection-item Level:#{level}
                 .col.m4
                     .vs
                         h1.red-text VS
+                    div#newboard
+                        div.crow
+                            div.cell#div0
+                            div.cell.div1
+                            div.cell.div2
+                        div.crow
+                            div.cell.div3
+                            div.cell.div4
+                            div.cell.div5
+                        div.crow
+                            div.cell.div6
+                            div.cell.div7
+                            div.cell.div8
                 .col.m4
                     h2 Click play to play with an online user or with ticky the computer
             
@@ -27,19 +40,6 @@ block content
                     span.card-title Online Users
                     div.chip#myChip
                     
-            div.newboard
-                div.crow
-                    div.cell#div0
-                    div.cell.div1
-                    div.cell.div2
-                div.crow
-                    div.cell.div3
-                    div.cell.div4
-                    div.cell.div5
-                div.crow
-                    div.cell.div6
-                    div.cell.div7
-                    div.cell.div8
     footer.page-footer
             h5 Contribute to this project on git hub
             a(href = "#") Git hub
@@ -49,6 +49,15 @@ block content
     script(src ="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js")
     script.
         var socket = io();
+        function alarm(){
+            var room = document.getElementById('name').innerHTML;
+            var board = document.getElementById('newboard');
+            board.style.display = 'block';
+            socket.emit('room', socket.id);
+        }
+        socket.on('connectToRoom',function(data){
+            alert(data);
+        });
         socket.on('chat', function(msg){
             var arr = Object.keys(msg);
             var sarr = Object.values(msg);

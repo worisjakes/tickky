@@ -106,7 +106,7 @@ h1.play{
     #play{
         margin-top: 15px;
     }
-    .newboard {
+    #newboard {
         margin: auto;
         width: 315px;
         height: 315px;
