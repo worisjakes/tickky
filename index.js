@@ -79,6 +79,7 @@ app.post("/login", function(req, res, next){
 });
 var arr = [];
 var name;
+var myname;
 app.get('/home', function(req, res){ 
     
     User.findOne({_id: req.session.userId}, 'username Won Lost image level', function(err, user){
@@ -88,6 +89,7 @@ app.get('/home', function(req, res){
             return next(err);
         }else{
             name = user.username;
+            myname = user.name;
             res.render("home.pug", {name: user.username, level: user.level, image:user.image, won : user.Won, lost: user.Lost});
         }
     
@@ -104,23 +106,24 @@ io.on('connection', function(socket){
         break;
     }
     else{
-    io.emit('chat', arr);
+    io.emit('chat', arr)
     break;
 }
     }
+
     socket.on('room', function(id){
-        rooms.unshift(id);
-        if(rooms.indexOf(id)/2 == 0 && rooms.length==1){
-            io.to(id).emit('connectToRoom','No one is online');
+        rooms.unshift(id[0]);
+        if(rooms.indexOf(id[0])/2 == 0 && rooms.length==1){
+            io.to(id[0]).emit('connectToRoom','No one is online');
         }
-        else if(rooms.indexOf(id)/2 == 0 && rooms.length>1){
-             io.to(rooms[rooms.indexOf(id)+1]).emit('connectToRoom','hi');
-        }
-        else if(rooms.indexOf(id)/2 != 0 && rooms.length>1){
-            io.to(rooms[rooms.indexOf(id)+1]).emit('connectToRoom','hi');
+        else if(rooms.indexOf(id[0])/2 == 0 && rooms.length >1){
+              io.to(rooms[rooms.indexOf(id[0])+1]).emit('connectToRoom', id[1]);
+        }else if(rooms.indexOf(id[0])/2 != 0 && rooms.length >1 ){
+             io.to(rooms[rooms.indexOf(id[0])+1]).emit('connectToRoom', id[1]);
+
         }
 
-    })
+    });
     
     
     

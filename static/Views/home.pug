@@ -8,13 +8,14 @@ block content
                             h4 Profile
                             img.responsive-img(src= "https://scontent.flos6-1.fna.fbcdn.net/v/t1.0-9/19029646_1485569508160932_7785511066077146586_n.jpg?_nc_eui2=v1%3AAeHX1z-Jnz3Foug2I2sraFzmXntgshPUXuSIu6MfEhWrxAk6JMAgeEwKPSDnJMSLj2wuevYfvw2DohbhuPBpcm1ywuyzq92tiektt41L7hAJ1w&oh=b92ec725ef4d1772eeea8b10fbf794f4&oe=5AA18CE6" alt="Contact Person")
                             a.waves-effect.waves-light.btn.pink(href= "/changedp") Change Profile picture
-                        li#name.collection-item Name: #{name}
-                        li.collection-item Games Won: #{won}
-                        li.collection-item Games lost: #{lost}
-                        li.collection-item Level:#{level}
+                        li.profile.collection-item Name: #{name}
+                        li.profile.collection-item Games Won: #{won}
+                        li.profile.collection-item Games lost: #{lost}
+                        li.profile.collection-item Level:#{level}
                 .col.m4
                     .vs
                         h1.red-text VS
+                    #txt Click play to play with an onlline user or with ticky the computer
                     div#newboard
                         div.crow
                             div.cell#div0
@@ -29,7 +30,15 @@ block content
                             div.cell.div7
                             div.cell.div8
                 .col.m4
-                    h2 Click play to play with an online user or with ticky the computer
+                    ul.collection.with-header
+                        li.collection-header
+                            h4 Profile
+                            img.responsive-img(src= " " alt="Contact Person")
+                            a.waves-effect.waves-light.btn.pink(href= "/changedp") Change Profile picture
+                        li#name.collection-item
+                        li#won.collection-item
+                        li#lost.collection-item
+                        li#level.collection-item 
             
           
         
@@ -50,13 +59,26 @@ block content
     script.
         var socket = io();
         function alarm(){
+            arr = [];
+            var idname = document.querySelectorAll("li.profile");
+            for(var i = 0; i<idname.length; i++){
+                arr.push(idname[i].innerHTML);
+            }
+            var  data = [socket.id, arr];
             var room = document.getElementById('name').innerHTML;
             var board = document.getElementById('newboard');
             board.style.display = 'block';
-            socket.emit('room', socket.id);
+            socket.emit('room', data);
         }
         socket.on('connectToRoom',function(data){
-            alert(data);
+            if(data == 'No one is online'){
+                alert(data);
+            }else{
+            document.getElementById('name').innerHTML = data[0];
+            document.getElementById('won').innerHTML = data[1];
+            document.getElementById('lost').innerHTML = data[2];
+            document.getElementById('level').innerHTML = data[3];
+            }
         });
         socket.on('chat', function(msg){
             var arr = Object.keys(msg);
